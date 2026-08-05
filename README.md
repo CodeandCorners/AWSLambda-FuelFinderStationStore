@@ -80,5 +80,3 @@ Creation of these entities only needs to happen once, Inline policies will have 
 ## Notable config
 fuelStationGeoHashPrecision = 5  # ~5Km
 tokenTTLInSeconds = 1800 # 30 mins, token duration from gov.uk 1 hour
-
-arn:aws:dynamodb:eu-west-2:464673162469:table/fuel-stations
