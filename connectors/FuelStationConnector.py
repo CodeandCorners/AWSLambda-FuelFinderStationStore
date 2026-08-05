@@ -98,10 +98,10 @@ def getFuelStations(bearerToken: BearerTokenResponse, http: urllib3.PoolManager,
         return []
     elif (fuelStationResponse.status != 200):
         raise Exception(
-            f"Fuel price request failed: {fuelStationResponse.status}"
+            f"Fuel Station request failed: {fuelStationResponse.status}"
         )
     else:
-        print(f"Fuel price request returned {fuelStationResponse.status}, continuing to process data for batch number {batchNumber}")
+        print(f"Fuel Station request returned {fuelStationResponse.status}, continuing to process data for batch number {batchNumber}")
         jsonResponse = json.loads(fuelStationResponse.data.decode("utf-8"))
 
 

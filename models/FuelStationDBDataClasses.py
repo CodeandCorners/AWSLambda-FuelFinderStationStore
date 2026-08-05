@@ -9,7 +9,6 @@ class FuelStationLocation:
     postcode: str
     latitude: Decimal
     longitude: Decimal
-    geohash: str
 
 @dataclass
 class OpeningTime:
@@ -33,9 +32,11 @@ class FuelStation:
     id: str
     name: str
     location: FuelStationLocation
+    geohash: str
     openingTimes: OpeningTimes
     ttl: int
-
+    createdAt: int
+    
 
 def returnName(tradingName: str, brandName: str, same: bool) -> str:
     if(same):
@@ -45,6 +46,7 @@ def returnName(tradingName: str, brandName: str, same: bool) -> str:
 
 def createFuelStationFromResponse(
     fuelStationResponse: FuelStationResponse,
+    createdAt: int,
     ttl: int,
     geoHashPrecison: int
     ) -> FuelStation | None:
@@ -61,17 +63,18 @@ def createFuelStationFromResponse(
         fuelStationResponse.brand_name,
         fuelStationResponse.is_same_trading_and_brand_name
     )
+    geohash=geohash2.encode(
+                float(fuelStationResponse.location.latitude),
+                float(fuelStationResponse.location.longitude),
+                precision=geoHashPrecison
+            )
+    
 
     location = FuelStationLocation(
         address_line_1=fuelStationResponse.location.address_line_1,
         postcode=fuelStationResponse.location.postcode,
         latitude=fuelStationResponse.location.latitude,
         longitude=fuelStationResponse.location.longitude,
-        geohash=geohash2.encode(
-            float(fuelStationResponse.location.latitude),
-            float(fuelStationResponse.location.longitude),
-            precision=geoHashPrecison
-        )
     )
 
     opening_times = OpeningTimes(
@@ -116,6 +119,8 @@ def createFuelStationFromResponse(
         id=fuelStationResponse.node_id,
         name=name,
         location=location,
+        geohash=geohash,
         openingTimes=opening_times,
-        ttl=ttl
+        ttl=ttl,
+        createdAt=createdAt
     )

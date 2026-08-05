@@ -72,6 +72,13 @@ Creation of these entities only needs to happen once, Inline policies will have 
 - pull geohash2 main folder out package and place folder in top level (same level as lambda_function.py)
 - REMOVE .venv file other wise you won't be able to push to AWS
 
-
+- increase AWS timeout > 3seconds < 1 minute
+- Create geohash-index on field `geohash` index with sort on `id`
+## Notes
+- Fuel stations inserted with TTL to delete 7 days from now (API loop is slower, waste of AWS resources if it deletes at EOD like the prices
 
 ## Notable config
+fuelStationGeoHashPrecision = 5  # ~5Km
+tokenTTLInSeconds = 1800 # 30 mins, token duration from gov.uk 1 hour
+
+arn:aws:dynamodb:eu-west-2:464673162469:table/fuel-stations
