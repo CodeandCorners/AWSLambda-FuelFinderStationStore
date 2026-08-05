@@ -83,7 +83,7 @@ Creation of these entities only needs to happen once, Inline policies will have 
 
 `pip install -r requirements.txt`
 
-- **geohash2 dependency for pushing to lambda as lambda does have geohash2 installed**
+- **geohash2 dependency for lambda**
 
 `python3 -m venv .venv`
 
