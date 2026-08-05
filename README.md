@@ -75,7 +75,7 @@ Creation of these entities only needs to happen once, Inline policies will have 
 - increase AWS timeout > 3seconds < 1 minute
 
 - EITHER
-- 1. geohash2 dependency for local
+- **geohash2 dependency for local testing / asserting**
 
 `python3 -m venv .venv`
 
@@ -83,7 +83,7 @@ Creation of these entities only needs to happen once, Inline policies will have 
 
 `pip install -r requirements.txt`
 
-- 2. geohash2 dependency for lambda
+- **geohash2 dependency for lambda**
 
 `python3 -m venv .venv`
 
@@ -91,7 +91,8 @@ Creation of these entities only needs to happen once, Inline policies will have 
 
 `pip install -r requirements.txt -t package/`
 
-- pull geohash2 main folder out package and place folder in top level (same level as lambda_function.py)
+- pull **geohash2** main folder out package and place folder in top level (same level as lambda_function.py)
+- delete the package folder 
 ## Notes
 - Fuel stations inserted with TTL to delete 7 days from now (API loop is slower, waste of AWS resources if it deletes at EOD like the prices
 
